@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Worker\StoreRequest;
+use App\Http\Requests\Worker\UpdateRequest;
 use App\Models\Worker;
 use Illuminate\Http\Request;
 
@@ -18,36 +20,34 @@ class WorkerController extends Controller
         return view('worker.show', compact('worker'));
     }
 
+    public function edit(Worker $worker){
+        return view('worker.edit', compact('worker'));
+    }
+
     public function create()
     {
-        $worker = [
-            'name' => 'Mark',
-            'surname' => 'Markov',
-            'email' => 'user2@mail.ru',
-            'age' => '21',
-            'description' => 'just Mark',
-            'is_married' => 'false'
-        ];
-
-        Worker::create($worker);
-
-        return 'Worker was created';
+        return view('worker.create');
     }
 
-    public function update()
-    {
-        $worker = Worker::find(2);
-        $worker->update([
-            'name' => 'Golubaya Luna',
+    public function store(StoreRequest $request){
+        $data = $request->validated();
+        $data['is_married'] = isset($data['is_married']);
+        Worker::create($data);
 
-        ]);
-        return $worker->name . 'was updated';
+        return redirect()->route('worker.index');
     }
 
-    public function delete()
+    public function update(UpdateRequest $request, Worker $worker)
     {
-        $worker = Worker::find(2);
+        $data = $request->validated();
+        $data['is_married'] = isset($data['is_married']);
+        $worker->update($data);
+        return redirect()->route('worker.show', $worker->id);
+    }
+
+    public function delete(Worker $worker)
+    {
         $worker->delete();
-        return 'deleted';
+        return redirect()->route('worker.index');
     }
 }
