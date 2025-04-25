@@ -16,6 +16,22 @@
     <div>
         <a href="{{route('worker.create')}}">Создать</a>
     </div>
+
+    <div>
+        <form action="{{route('worker.index')}}">
+            <input type="text" name="name" placeholder="name">
+            <input type="text" name="surname" placeholder="surname">
+            <input type="text" name="email" placeholder="email">
+            <input type="number" name="from" placeholder="from">
+            <input type="number" name="to" placeholder="to">
+            <input type="text" name="description" placeholder="description">
+            <input id="isMarried" type="checkbox" name="is_married">
+            <label for="isMarried">Замужем?</label>
+            <input type="submit">
+        </form>
+    </div>
+    <hr>
+    <hr>
     <br>
     <hr>
     @foreach($workers  as $worker)
@@ -38,6 +54,16 @@
                 <input type="submit" value="УДАЛИТЬ">
             </form>
         </div>
+
         @endforeach
+    <div class="my_nav">
+        {{$workers->links()}}
+    </div>
+
 </body>
 </html>
+<style>
+    .my_nav svg{
+        width: 20px;
+    }
+</style>
