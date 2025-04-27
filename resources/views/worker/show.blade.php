@@ -1,16 +1,8 @@
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <div>
-        Index
-    </div>
+@extends('layout.main')
+
+@section('content')
         <div>Name:{{$worker->name}}</div>
         <div>SurName:{{$worker->surname}}</div>
         <div>Mail:{{$worker->email}}</div>
@@ -20,5 +12,4 @@
         <div><a href="{{route('worker.index')}}">Назад</a></div>
         <hr>
         <br>
-</body>
-</html>
+@endsection
