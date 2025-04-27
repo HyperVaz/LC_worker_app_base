@@ -19,15 +19,18 @@
 
     <div>
         <form action="{{route('worker.index')}}">
-            <input type="text" name="name" placeholder="name">
-            <input type="text" name="surname" placeholder="surname">
-            <input type="text" name="email" placeholder="email">
-            <input type="number" name="from" placeholder="from">
-            <input type="number" name="to" placeholder="to">
-            <input type="text" name="description" placeholder="description">
-            <input id="isMarried" type="checkbox" name="is_married">
+            <input type="text" name="name" placeholder="name" value="{{request()->get('name')}}">
+            <input type="text" name="surname" placeholder="surname" value="{{request()->get('surname')}}">
+            <input type="text" name="email" placeholder="email" value="{{request()->get('email')}}">
+            <input type="number" name="from" placeholder="from" value="{{request()->get('from')}}">
+            <input type="number" name="to" placeholder="to" value="{{request()->get('to')}}">
+            <input type="text" name="description" placeholder="description" value="{{request()->get('description')}}">
+            <input id="isMarried" type="checkbox" name="is_married"
+                {{request()->get('is_married') == 'on' ? 'checked' : ''}}
+            >
             <label for="isMarried">Замужем?</label>
             <input type="submit">
+            <a href="{{ route('worker.index')}}">Сбросить</a>
         </form>
     </div>
     <hr>
