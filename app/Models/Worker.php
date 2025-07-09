@@ -12,4 +12,9 @@ class Worker extends Model
     protected $guarded = false;
 
     protected $table = 'workers';
+
+    public function profile()
+    {
+        return $this->hasOne(Profile::class, 'worker_id', 'id');
+    }
 }
