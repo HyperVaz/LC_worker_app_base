@@ -36,7 +36,13 @@ class DevCommand extends Command
 //        $this->prepareManyToMany();
 
         $worker = Worker::find(2);
-        dd($worker->projects->toArray());
+        $worker1 = Worker::find(1);
+        $worker2 = Worker::find(3);
+        $project = Project::find(1);
+
+        $project->workers()->sync($worker->id);
+
+        dd($worker->toArray());
 
     }
 
