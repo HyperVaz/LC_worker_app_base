@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('project_worker', function (Blueprint $table) {
+        Schema::create('avatars', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('project_id')->index()->constrained('projects');
-            $table->foreignId('worker_id')->index()->constrained('workers');
+            $table->string('path');
+            $table->unsignedBigInteger('avatarable_id');
+            $table->string('avatarable_type');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('project_workers');
+        Schema::dropIfExists('avatars');
     }
 };

@@ -5,16 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Profile extends Model
+class Client extends Model
 {
     use HasFactory;
-
-    protected $table = 'profiles';
-
     protected $guarded = false;
 
-    public function worker()
+    public function avatar()
     {
-        return $this->belongsTo(Worker::class);
+        return $this->morphOne(Avatar::class, 'avatarable');
     }
 }

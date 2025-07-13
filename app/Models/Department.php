@@ -19,6 +19,6 @@ class Department extends Model
 
     public function workers()
     {
-        return $this->hasManyThrough(Worker::class, Position::class, 'department_id', 'position_id', 'id', 'id');
+        return $this->hasManyThrough(Worker::class, Position::class);
     }
 }
