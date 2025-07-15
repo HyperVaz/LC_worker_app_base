@@ -7,6 +7,8 @@ use App\Models\Client;
 use App\Models\Department;
 use App\Models\Position;
 use App\Models\Project;
+use App\Models\Review;
+use App\Models\Tag;
 use App\Models\Worker;
 use Illuminate\Console\Command;
 
@@ -33,14 +35,22 @@ class DevCommand extends Command
      */
     public function handle()
     {
-//        $this->prepareData();
-//        $this->prepareManyToMany();
-        $avatar = Avatar::find(2);
-        dd($avatar->avatarable->toArray());
+        $position = Position::first();
+        dd($position->queryWorker->toArray());
     }
 
     private function prepareData()
     {
+        Client::create([
+            'name' => 'Bob'
+        ]);
+        Client::create([
+            'name' => 'Goose'
+        ]);
+        Client::create([
+            'name' => 'Korova'
+        ]);
+
         $department1 = Department::create([
             'title' => 'It'
         ]);
