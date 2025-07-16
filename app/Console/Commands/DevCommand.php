@@ -35,9 +35,12 @@ class DevCommand extends Command
      */
     public function handle()
     {
-        Worker::find(1)->update([
-            'name' => 'devyanosta rebyat'
-        ]);
+//        $worker = Worker::find(1);
+//        $worker->delete();
+
+        $worker = Worker::withTrashed()->find(1);
+        $worker->restore();
+        dd($worker);
     }
 
     // Создание данных "в рукопашку"
