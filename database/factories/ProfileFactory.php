@@ -18,7 +18,6 @@ class ProfileFactory extends Factory
     public function definition()
     {
         return [
-            'worker_id' => Worker::factory()->create(),
             'city'=>fake()->city(),
             'skill'=>fake()->jobTitle(),
             'experience'=>fake()->numberBetween(1, 45),
