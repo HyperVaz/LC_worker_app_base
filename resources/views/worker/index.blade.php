@@ -3,9 +3,11 @@
    @section('content')
     <hr>
     <br>
+    @can('create', \App\Models\Worker::class)
     <div>
         <a href="{{route('workers.create')}}">Создать</a>
     </div>
+    @endcan
     <hr>
     <hr>
     <br>
@@ -20,9 +22,12 @@
         <div><a href="{{route('workers.show', $worker->id)}}">Посмотреть профиль</a></div>
         <br>
         <hr>
+        @can ('update', \App\Models\Worker::class)
         <div><a href="{{route('workers.edit', $worker->id)}}">Редактировать профиль</a></div>
+        @endcan
         <hr>
         <br>
+        @can('delete', \App\Models\Worker::class)
         <div>
             <form action="{{route('workers.destroy', $worker->id)}}" method="post">
                 @csrf
@@ -30,6 +35,7 @@
                 <input type="submit" value="УДАЛИТЬ">
             </form>
         </div>
+        @endcan
 
         @endforeach
     <div class="my_nav">

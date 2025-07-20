@@ -6,6 +6,7 @@ use App\Http\Requests\Worker\IndexRequest;
 use App\Http\Requests\Worker\StoreRequest;
 use App\Http\Requests\Worker\UpdateRequest;
 use App\Models\Worker;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 
 class WorkerController extends Controller
@@ -47,15 +48,21 @@ class WorkerController extends Controller
     }
 
     public function edit(Worker $worker){
+        $this->authorize('create', $worker);
         return view('worker.edit', compact('worker'));
     }
 
+    /**
+     * @throws AuthorizationException
+     */
     public function create()
     {
+        $this->authorize('create', Worker::class);
         return view('worker.create');
     }
 
     public function store(StoreRequest $request){
+        $this->authorize('create', Worker::class);
         $data = $request->validated();
         $data['is_married'] = isset($data['is_married']);
         Worker::create($data);
@@ -65,6 +72,7 @@ class WorkerController extends Controller
 
     public function update(UpdateRequest $request, Worker $worker)
     {
+        $this->authorize('create', $worker);
         $data = $request->validated();
         $data['is_married'] = isset($data['is_married']);
         $worker->update($data);
@@ -73,6 +81,7 @@ class WorkerController extends Controller
 
     public function destroy(Worker $worker)
     {
+        $this->authorize('delete', $worker);
         $worker->delete();
         return redirect()->route('workers.index');
     }
