@@ -2,7 +2,7 @@
 
 @section('content')
 <div>
-    <form action="{{route('worker.update', $worker->id)}}" method="Post">
+    <form action="{{route('workers.update', $worker->id)}}" method="Post">
         @csrf
         @method('Patch')
         <br><input type="text" name="name" placeholder="name" value="{{ old('name') ?? $worker->name}}">@error('name')
@@ -32,7 +32,7 @@
 </div>
 
 
-<div><a href="{{route('worker.index')}}">Назад</a></div>
+<div><a href="{{route('workers.index')}}">Назад</a></div>
 <hr>
 <br>
 @endsection

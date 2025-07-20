@@ -9,7 +9,7 @@
         <div>Age:{{$worker->age}}</div>
         <div>Desp:{{$worker->description}}</div>
         <div>Zamuzhem:{{$worker->is_married}}</div>
-        <div><a href="{{route('worker.index')}}">Назад</a></div>
+        <div><a href="{{route('workers.index')}}">Назад</a></div>
         <hr>
         <br>
 @endsection
