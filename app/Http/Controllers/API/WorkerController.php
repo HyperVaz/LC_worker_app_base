@@ -24,5 +24,23 @@ class WorkerController extends Controller
     public function store(StoreRequest $request)
     {
         $data = $request->validated();
+        $worker = Worker::create($data);
+        return WorkerResource::make($worker)->resolve();
+    }
+
+    public function update(Worker $worker, StoreRequest $request)
+    {
+        $data = $request->validated();
+        $worker->update($data);
+        $worker->fresh();
+        return WorkerResource::make($worker)->resolve();
+    }
+
+    public function destroy(Worker $worker)
+    {
+        $worker->delete();
+        return response()->json([
+            'message' => 'success'
+        ]);
     }
 }
