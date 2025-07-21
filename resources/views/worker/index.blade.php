@@ -10,6 +10,19 @@
     @endcan
     <hr>
     <hr>
+    <h1>Форма фильтрации</h1>
+    <form action="{{ route('workers.index') }}">
+        <input type="text" name="name" placeholder="name">
+        <input type="text" name="surname" placeholder="surname">
+        <input type="text" name="email" placeholder="email">
+        <input type="number" name="from" placeholder="from">
+        <input type="number" name="to" placeholder="to">
+        <input type="text" name="description" placeholder="description">
+        <input id="isMarried" type="checkbox" name="is_married">
+        <label for="isMarried">Is married</label>
+        <input type="submit">
+    </form>
+
     <br>
     <hr>
     @foreach($workers  as $worker)
