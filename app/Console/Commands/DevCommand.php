@@ -3,6 +3,11 @@
 namespace App\Console\Commands;
 
 use App\Http\Filter\Var1\WorkerFilter;
+use App\Http\Filter\Var2\Worker\Age;
+use App\Http\Filter\Var2\Worker\AgeFrom;
+use App\Http\Filter\Var2\Worker\AgeTo;
+use App\Http\Filter\Var2\Worker\Name;
+use App\Http\Filter\Var2\Worker\Surname;
 use App\Jobs\SomeJob;
 use App\Models\Avatar;
 use App\Models\Client;
@@ -13,6 +18,7 @@ use App\Models\Review;
 use App\Models\Tag;
 use App\Models\Worker;
 use Illuminate\Console\Command;
+use Illuminate\Pipeline\Pipeline;
 
 class DevCommand extends Command
 {
@@ -37,11 +43,7 @@ class DevCommand extends Command
      */
     public function handle()
     {
-        $workerQuery = Worker::query();
-        $filter = new WorkerFilter(['from' => 1,
-        ]);
-        $filter->applyFilter($workerQuery);
-        dd($workerQuery->get());
+
     }
 
     // Создание данных "в рукопашку"
