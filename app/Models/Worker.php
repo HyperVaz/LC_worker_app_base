@@ -3,6 +3,9 @@
 namespace App\Models;
 
 use App\Events\Worker\CreatedEvent;
+use App\Http\Filter\Var1\AbstractFilter;
+use App\Models\Traits\HasFilter;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -11,6 +14,7 @@ class Worker extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use HasFilter;
 
     protected $guarded = false;
 
@@ -27,6 +31,7 @@ class Worker extends Model
 //            }
 //        });
 //    }
+
 
     public function profile()
     {

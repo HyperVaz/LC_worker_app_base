@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Http\Filter\Var1\WorkerFilter;
 use App\Jobs\SomeJob;
 use App\Models\Avatar;
 use App\Models\Client;
@@ -36,7 +37,11 @@ class DevCommand extends Command
      */
     public function handle()
     {
-        SomeJob::dispatchSync()->onQueue('some_queue');
+        $workerQuery = Worker::query();
+        $filter = new WorkerFilter(['from' => 1,
+        ]);
+        $filter->applyFilter($workerQuery);
+        dd($workerQuery->get());
     }
 
     // Создание данных "в рукопашку"
